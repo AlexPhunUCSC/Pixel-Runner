@@ -14,26 +14,18 @@ class Play extends Phaser.Scene {
     }
 
     create() {
-        //this.add.text(20, 20, "Rocket Patrol Play");
-
         this.starfield = this.add.tileSprite(0, 0, 16, 16, 'bg').setOrigin(0,0);
 
         // green UI background
         this.add.rectangle(0, borderUISize + borderPadding, 
             game.config.width, 
             borderUISize * 2, 0x00FF00).setOrigin(0,0);
-        this.add.rectangle(0, 0, game.config.width, borderUISize, 0xFFFFFF).setOrigin(0,0);
+        
+        // I think this white border looks ugly as-is
+        /*this.add.rectangle(0, 0, game.config.width, borderUISize, 0xFFFFFF).setOrigin(0,0);
         this.add.rectangle(0, game.config.height - borderUISize, game.config.width, borderUISize, 0xFFFFFF).setOrigin(0,0);
         this.add.rectangle(0, 0, borderUISize, game.config.height, 0xFFFFFF).setOrigin(0,0);
-        this.add.rectangle(game.config.width - borderUISize, 0, borderUISize, game.config.height, 0xFFFFFF).setOrigin(0,0);
-        /*this.p1Rocket = new Rocket(this, 
-            game.config.width / 2, 
-            game.config.height - (borderUISize + borderPadding), 
-            'rocket').setOrigin(0.5, 0);
-        // add spaceships
-        this.ship01 = new Spaceship(this, game.config.width + borderUISize*6, borderUISize*4, 'spaceship', 0, 30).setOrigin(0,0);
-        this.ship02 = new Spaceship(this, game.config.width + borderUISize*3, borderUISize*5 + borderPadding*2, 'spaceship', 0, 20).setOrigin(0,0);
-        this.ship03 = new Spaceship(this, game.config.width, borderUISize*6 + borderPadding*4, 'spaceship', 0, 10).setOrigin(0,0);*/
+        this.add.rectangle(game.config.width - borderUISize, 0, borderUISize, game.config.height, 0xFFFFFF).setOrigin(0,0);*/
 
         this.pl1 = new Player(this, game.config.width / 2, game.config.height / 2, 'running', 0).setOrigin(0, 0);
         const playerAnimation = this.anims.create({
@@ -75,12 +67,12 @@ class Play extends Phaser.Scene {
 
     update() {
 
-        //jump animation
+        //how not to handle jump animations
         /*if(Phaser.Input.Keyboard.JustDown(keySPACE)) {
             this.pl1.alpha = 0;
             this.pl1 = new Player(this, game.config.width / 2, game.config.height / 2, 'jump').setOrigin(0.5, 0);
         }*/
-        //re: please for the love of god, don't implement it like this
+        //please for the love of god, don't implement it like this
 
         if(this.gameOver && Phaser.Input.Keyboard.JustDown(keySPACE)) {
             this.scene.restart();
@@ -88,10 +80,8 @@ class Play extends Phaser.Scene {
         if(this.gameOver && Phaser.Input.Keyboard.JustDown(keyR)) {
             this.scene.start("menuScene");
         }
-        //this.starfield.tilePositionX -= 2;
         if(!this.gameOver) {
             this.pl1.update();
-            //this.plat1.update();
             for(let i = 0; i < 21; i++){
                 this.plats[i].update();
                 if(this.plats[i].x == this.pl1.x){
@@ -102,9 +92,13 @@ class Play extends Phaser.Scene {
                 }
             }
         }
+        if(this.pl1.y > game.config.height){
+            this.scene.start('gameOverScene');
+        }
         
-        // check collisions
-        //TODO
+        //check collisions
+        //collision checking between player and floors
+        //is handled entirely in the player class
     }
 
     checkCollision(Player, platform) {

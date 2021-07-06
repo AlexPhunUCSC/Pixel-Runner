@@ -1,7 +1,7 @@
 class Menu extends Phaser.Scene {
     constructor() {
         super("menuScene");
-        let song;
+        let mus1;
         let click;
     }
 
@@ -11,9 +11,9 @@ class Menu extends Phaser.Scene {
     preload() {
         // any asset for this scene
         this.load.image('menu', './assets/MenuScreen.png');
+        this.load.audio('song', './assets/bgm.wav');
     }
     create(){        
-        //this.song.play();
         let menuConfig = {
             fontFamily: 'Courier',
             fontSize: '28px',
@@ -32,6 +32,7 @@ class Menu extends Phaser.Scene {
         keyR = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
     }
     update() {
+        this.sound.play('song');
         if (Phaser.Input.Keyboard.JustDown(keySPACE)) {
             this.scene.start('playScene');
         }

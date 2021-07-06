@@ -1,6 +1,6 @@
 class GameOver extends Phaser.Scene {
     constructor() {
-        super("gameOver");
+        super("gameOverScene");
         let song;
     }
 
@@ -12,18 +12,6 @@ class GameOver extends Phaser.Scene {
         this.load.image('gameOver', './assets/GameOver.png');
     }
     create() {
-        let menuConfig = {
-            fontFamily: 'Courier',
-            fontSize: '28px',
-            backgroundColor: '#F3B141',
-            color: '#843605',
-            align: 'right',
-            padding: {
-                top: 5, bottom: 5
-            },
-            fixedWidth: 0
-            
-        }
         this.background = this.add.image(game.config.width/2, game.config.height/2, 'gameOver');        
 
         keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);

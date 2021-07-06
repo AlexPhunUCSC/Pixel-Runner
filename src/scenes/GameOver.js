@@ -1,8 +1,7 @@
-class Menu extends Phaser.Scene {
+class GameOver extends Phaser.Scene {
     constructor() {
-        super("menuScene");
+        super("gameOver");
         let song;
-        let click;
     }
 
     init() {
@@ -10,17 +9,9 @@ class Menu extends Phaser.Scene {
     }
     preload() {
         // any asset for this scene
-        this.load.image('menu', './assets/MenuScreen.png');
-        // load audio
-        this.load.audio('sfx_run', './assets/run.wav');
-        //this.load.audio('sfx_click', './assets/click.wav');
-        this.load.audio('sfx_bgm', './assets/bgm.wav');
+        this.load.image('gameOver', './assets/GameOver.png');
     }
-    create(){
-        this.song = this.sound.add("sfx_bgm",{volume: 0.5});
-        //this.click = this.sound.add("sfx_click",{volume: 0.5});
-        
-        this.song.play();
+    create() {
         let menuConfig = {
             fontFamily: 'Courier',
             fontSize: '28px',
@@ -33,14 +24,17 @@ class Menu extends Phaser.Scene {
             fixedWidth: 0
             
         }
-        this.background = this.add.image(game.config.width/2, game.config.height/2, 'menu');        
+        this.background = this.add.image(game.config.width/2, game.config.height/2, 'gameOver');        
+
         keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
         keyR = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
     }
     update() {
         if (Phaser.Input.Keyboard.JustDown(keySPACE)) {
-            //this.click.play();
             this.scene.start('playScene');
+        }
+        if (Phaser.Input.Keyboard.JustDown(keyR)) {
+            this.scene.start('menuScene');
         }
     }
 }

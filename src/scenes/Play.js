@@ -10,7 +10,7 @@ class Play extends Phaser.Scene {
         this.load.image('spike', './assets/Spike.png');
         this.load.image('bg', './assets/bg.png');
         this.load.image('plat', './assets/plat.png');
-        this.load.spritesheet('running', './assets/Running.png', {frameWidth: 25, frameHeight: 25, startFrame: 0, endFrame: 7});
+        this.load.spritesheet('running', './assets/Running.png', {frameWidth: 32, frameHeight: 32, startFrame: 0, endFrame: 7});
     }
 
     create() {
@@ -28,7 +28,7 @@ class Play extends Phaser.Scene {
         this.add.rectangle(game.config.width - borderUISize, 0, borderUISize, game.config.height, 0xFFFFFF).setOrigin(0,0);
       
 
-        this.pl1 = new Player(this, game.config.width / 2, game.config.height / 2, 'running').setOrigin(0.5, 0);
+        //this.pl1 = new Player(this, game.config.width / 2, game.config.height / 2, 'running').setOrigin(0.5, 0);
         /*this.p1Rocket = new Rocket(this, 
             game.config.width / 2, 
             game.config.height - (borderUISize + borderPadding), 
@@ -43,10 +43,15 @@ class Play extends Phaser.Scene {
         keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
         keyJump = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
 
-        this.anims.create({
-            key: 'running',
-            frames: this.anims.generateFrameNumbers('running', {start: 0, end: 7, first: 0}), 
-            frameRate: 12});
+        //player animation attempt start
+        this.pl1 = this.add.sprite(game.config.width/2 - borderPadding*1, game.config.height/1.75, 'running');
+        const playerAnimation = this.anims.create({
+            key: 'running1',
+            frames: this.anims.generateFrameNumbers('running'),
+            frameRate: 12
+        });
+        this.pl1.play({ key: 'running1', repeat: -1 });
+        //player animation attempt end
 
         this.p1Score = 0;
 
@@ -69,6 +74,13 @@ class Play extends Phaser.Scene {
     }
 
     update() {
+
+        //jump animation
+        if(Phaser.Input.Keyboard.JustDown(keySPACE)) {
+            this.pl1.alpha = 0;
+            this.pl1 = new Player(this, game.config.width / 2, game.config.height / 2, 'jump').setOrigin(0.5, 0);
+        }
+
         if(this.gameOver && Phaser.Input.Keyboard.JustDown(keySPACE)) {
             this.scene.restart();
         }

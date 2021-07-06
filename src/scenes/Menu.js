@@ -15,13 +15,7 @@ class Menu extends Phaser.Scene {
         this.load.audio('sfx_bgm', './assets/bgm.wav');
     }
     create() {
-        this.song = this.sound.add("sfx_bgm",{volume: 0.5});
-        this.this.song.play();
-
-
-
-
-        let menuConfig = {
+      /*  let menuConfig = {
             fontFamily: 'Courier',
             fontSize: '28px',
             backgroundColor: '#F3B141',
@@ -32,12 +26,9 @@ class Menu extends Phaser.Scene {
             },
             fixedWidth: 0
             
-        }
-        //this.add.text(game.config.width/2, game.config.height/2 - (borderUISize + borderPadding), 'Pixel Runner', menuConfig).setOrigin(0.5);
-        //this.add.text(game.config.width/2, game.config.height/2, 'Use Spacebar to Jump', menuConfig).setOrigin(0.5);
-        //menuConfig.backgroundColor = "#00FF00";
-        //menuConfig.color = "#000";
-        //this.add.text(game.config.width/2, game.config.height/2 + (borderUISize + borderPadding), 'Press Spacebar to Start', menuConfig).setOrigin(0.5);
+        }*/
+
+        var menu = this.add.image(640, 480, 'menu');
 
         keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
         keyR = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);

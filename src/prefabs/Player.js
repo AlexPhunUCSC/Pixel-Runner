@@ -4,7 +4,7 @@ class Player extends Phaser.GameObjects.Sprite {
         scene.add.existing(this);
         this.terminalV = 24;
         this.vSpeed = 0;
-        this.floorUnderHeight = 180;
+        this.floorUnderHeight = 360;
         
     }
     checkFloor() {

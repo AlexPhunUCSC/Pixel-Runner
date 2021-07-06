@@ -5,6 +5,7 @@ class Play extends Phaser.Scene {
 
     preload() {
         this.load.image('falling', './assets/Falling.png');
+        this.load.image('falling', './assets/MenuScreen.png');
         this.load.image('jump', './assets/Jump.png');
         this.load.image('spike', './assets/Spike.png');
         this.load.spritesheet('running', './assets/Running.png', {frameWidth: 25, frameHeight: 25, startFrame: 0, endFrame: 7});
@@ -34,7 +35,7 @@ class Play extends Phaser.Scene {
         this.ship03 = new Spaceship(this, game.config.width, borderUISize*6 + borderPadding*4, 'spaceship', 0, 10).setOrigin(0,0);
 
 
-        keyR = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.R);
+        keyR = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
         keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
 
         this.anims.create({

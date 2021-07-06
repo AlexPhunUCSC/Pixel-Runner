@@ -35,7 +35,7 @@ class Play extends Phaser.Scene {
         this.ship02 = new Spaceship(this, game.config.width + borderUISize*3, borderUISize*5 + borderPadding*2, 'spaceship', 0, 20).setOrigin(0,0);
         this.ship03 = new Spaceship(this, game.config.width, borderUISize*6 + borderPadding*4, 'spaceship', 0, 10).setOrigin(0,0);*/
 
-        this.pl1 = new Player(this, game.config.width / 2, game.config.height / 2, 'running', 0).setOrigin(0.5, 0);
+        this.pl1 = new Player(this, game.config.width / 2, game.config.height / 2, 'running', 0).setOrigin(0, 0);
         const playerAnimation = this.anims.create({
             key: 'running1',
             frames: this.anims.generateFrameNumbers('running'),
@@ -94,6 +94,9 @@ class Play extends Phaser.Scene {
             //this.plat1.update();
             for(let i = 0; i < 21; i++){
                 this.plats[i].update();
+                if(this.plats[i].x == 320){
+                    this.pl1.evaluateFloor(0, this.plats[i].y);
+                }
             }
         }
         

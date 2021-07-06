@@ -4,26 +4,32 @@ class Player extends Phaser.GameObjects.Sprite {
         scene.add.existing(this);
         this.terminalV = -24;
         this.vSpeed = 0;
-        this.floorUnderHeight = 360;
-        
+        this.floorUnderBackHeight = 360;
+        this.floorUnderFrontHeight = 360; 
+        this.evaluateFloor = function(side, platBack){
+            if (side == 0){
+                this.evaluateFloorUnderBack(platBack);
+            }
+        }       
     }
+
+    evaluateFloorUnderBack(platBack){
+        this.floorUnderBackHeight = platBack - 32;
+    }
+
     checkFloor() {
-        if(this.y < this.floorUnderHeight){
+        if(this.y < this.floorUnderBackHeight){
             return false;
         }
-        else if(this.y = this.floorUnderHeight){
+        else if(this.y = this.floorUnderBackHeight){
             return true;
         }
-        else if((this.y - 4) < this.floorUnderHeight){
-            this.y = this.floorUnderHeight;
-            return true;
+        else if((this.y - 4) > this.floorUnderBackHeight){
+            return false;
         }
         else{
             return false;
         }
-    }
-    evaluateFloorUnder(){
-        //TODO
     }
 
     update() {

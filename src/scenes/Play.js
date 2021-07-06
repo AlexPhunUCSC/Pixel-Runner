@@ -10,7 +10,11 @@ class Play extends Phaser.Scene {
         this.load.image('spike', './assets/Spike.png');
         this.load.image('bg', './assets/bg.png');
         this.load.image('plat', './assets/plat.png');
+<<<<<<< HEAD
         this.load.spritesheet('running', './assets/Running.png', {frameWidth: 32, frameHeight: 32, startFrame: 0, endFrame: 7});
+=======
+        this.load.spritesheet('running', './assets/Running.png', {frameWidth: 24, frameHeight: 26, startFrame: 0, endFrame: 7});
+>>>>>>> 3e5b9e63ba497dfe56b35834206ec5ba632e67c3
     }
 
     create() {
@@ -26,8 +30,8 @@ class Play extends Phaser.Scene {
         this.add.rectangle(0, game.config.height - borderUISize, game.config.width, borderUISize, 0xFFFFFF).setOrigin(0,0);
         this.add.rectangle(0, 0, borderUISize, game.config.height, 0xFFFFFF).setOrigin(0,0);
         this.add.rectangle(game.config.width - borderUISize, 0, borderUISize, game.config.height, 0xFFFFFF).setOrigin(0,0);
-      
 
+<<<<<<< HEAD
         //this.pl1 = new Player(this, game.config.width / 2, game.config.height / 2, 'running').setOrigin(0.5, 0);
         /*this.p1Rocket = new Rocket(this, 
             game.config.width / 2, 
@@ -37,7 +41,15 @@ class Play extends Phaser.Scene {
         this.ship01 = new Spaceship(this, game.config.width + borderUISize*6, borderUISize*4, 'spaceship', 0, 30).setOrigin(0,0);
         this.ship02 = new Spaceship(this, game.config.width + borderUISize*3, borderUISize*5 + borderPadding*2, 'spaceship', 0, 20).setOrigin(0,0);
         this.ship03 = new Spaceship(this, game.config.width, borderUISize*6 + borderPadding*4, 'spaceship', 0, 10).setOrigin(0,0);*/
+=======
+>>>>>>> 3e5b9e63ba497dfe56b35834206ec5ba632e67c3
 
+        this.pl1 = new Player(this, game.config.width / 2, game.config.height / 2, 'running', 0).setOrigin(0.5, 0);
+        this.plats = new Array(21);
+        for (let i = 0; i < 21; i++){
+            this.plats[i] = new Plat(this, 32 * i, 360, 'plat', 0).setOrigin(0, 0);
+        }
+        //this.plat1 = new Plat(this, game.config.width / 2, game.config.height * 3 / 4, 'plat', 0).setOrigin(0, 0);
 
         keyR = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
         keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
@@ -90,6 +102,10 @@ class Play extends Phaser.Scene {
         this.starfield.tilePositionX -= 2;
         if(!this.gameOver) {
             this.pl1.update();
+            //this.plat1.update();
+            for(let i = 0; i < 21; i++){
+                this.plats[i].update();
+            }
         }
         
         // check collisions

@@ -2,7 +2,7 @@ class Player extends Phaser.GameObjects.Sprite {
     constructor(scene, x, y, texture, frame) {
         super(scene, x, y, texture, frame);
         scene.add.existing(this);
-        this.terminalV = 24;
+        this.terminalV = -24;
         this.vSpeed = 0;
         this.floorUnderHeight = 360;
         
@@ -29,14 +29,16 @@ class Player extends Phaser.GameObjects.Sprite {
     update() {
         //we're only moving vertically, the BG is doing the horizontal movement for us
         if (!this.checkFloor()) {
-            if(this.vSpeed > this.terminalV){
-                this.vSpeed = this.terminalV;
+            if(this.vSpeed < this.terminalV){
+                //this.vSpeed = this.terminalV;
             }
             if(keyJump.isDown){
                 this.vSpeed -= 1;
+                this.terminalV = -18;
             }
             else{
                 this.vSpeed -= 3;
+                this.terminalV = -24;
             }
         }
 

@@ -2,6 +2,7 @@ class Menu extends Phaser.Scene {
     constructor() {
         super("menuScene");
         let song;
+        let click;
     }
 
     init() {
@@ -17,6 +18,8 @@ class Menu extends Phaser.Scene {
     }
     create(){
         this.song = this.sound.add("sfx_bgm",{volume: 0.5});
+        //this.click = this.sound.add("sfx_click",{volume: 0.5});
+        
         this.song.play();
         let menuConfig = {
             fontFamily: 'Courier',
@@ -36,10 +39,7 @@ class Menu extends Phaser.Scene {
     }
     update() {
         if (Phaser.Input.Keyboard.JustDown(keySPACE)) {
-            game.settings = {
-                characterSpeed: 3,
-            }
-            //this.sound.play('sfx_click');
+            //this.click.play();
             this.scene.start('playScene');
         }
     }

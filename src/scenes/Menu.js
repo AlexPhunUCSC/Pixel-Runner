@@ -36,7 +36,7 @@ class Menu extends Phaser.Scene {
         keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
         keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
     }
-    update() {
+    /*update() {
         if (Phaser.Input.Keyboard.JustDown(keyLEFT)) {
             game.settings = {
                 spaceshipSpeed: 3,
@@ -54,6 +54,6 @@ class Menu extends Phaser.Scene {
             this.scene.start('playScene');
         }
 
-    }
+    }*/
 }
 

@@ -34,15 +34,13 @@ class Play extends Phaser.Scene {
         this.ship03 = new Spaceship(this, game.config.width, borderUISize*6 + borderPadding*4, 'spaceship', 0, 10).setOrigin(0,0);
 
 
-        keyF = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.F);
         keyR = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.R);
-        keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
-        keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
+        keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
 
         this.anims.create({
-            key: 'explode',
-            frames: this.anims.generateFrameNumbers('explosion', {start: 0, end: 9, first: 0}), 
-            frameRate: 30});
+            key: 'running',
+            frames: this.anims.generateFrameNumbers('running', {start: 0, end: 7, first: 0}), 
+            frameRate: 12});
 
         this.p1Score = 0;
 
@@ -66,16 +64,16 @@ class Play extends Phaser.Scene {
         scoreConfig.fixedWidth = 0;
         this.clock = this.time.delayedCall(game.settings.gameTimer, () => {
             this.add.text(game.config.width/2, game.config.height/2, 'GAME OVER', scoreConfig).setOrigin(0.5);
-            this.add.text(game.config.width/2, game.config.height/2 + 64, 'Press (R) to Restart or ← for Menu', scoreConfig).setOrigin(0.5);
+            this.add.text(game.config.width/2, game.config.height/2 + 64, 'Press (Space) to Restart or (R) for Menu', scoreConfig).setOrigin(0.5);
             this.gameOver = true;
         }, null, this);
     }
 
     update() {
-        if(this.gameOver && Phaser.Input.Keyboard.JustDown(keyR)) {
+        if(this.gameOver && Phaser.Input.Keyboard.JustDown(keySPACE)) {
             this.scene.restart();
         }
-        if(this.gameOver && Phaser.Input.Keyboard.JustDown(keyLEFT)) {
+        if(this.gameOver && Phaser.Input.Keyboard.JustDown(keyR)) {
             this.scene.start("menuScene");
         }
         this.starfield.tilePositionX -= 4;
@@ -110,8 +108,6 @@ class Play extends Phaser.Scene {
         }
         return false;
     }
-
-    //Try creating a new function that randomly chooses from an array of audio explosions
 
     shipExplode(ship) {
         ship.alpha = 0; // hide the ship

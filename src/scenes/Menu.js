@@ -8,6 +8,12 @@ class Menu extends Phaser.Scene {
 
     }
     preload() {
+<<<<<<< HEAD
+        // any asset for this scene
+        this.load.image('menu', './assets/MenuScreen.png');
+    }
+    create() {
+=======
         // load audio
         this.load.audio('sfx_run', './assets/run.wav');
         //this.load.audio('sfx_click', './assets/click.wav');
@@ -17,6 +23,7 @@ class Menu extends Phaser.Scene {
         this.song = this.sound.add("sfx_bgm",{volume: 0.5});
         this.song.play();
 
+>>>>>>> 2d7de293d4ed9a469a2ecc6dd4d85a53d8f7acd3
         let menuConfig = {
             fontFamily: 'Courier',
             fontSize: '28px',
@@ -29,11 +36,15 @@ class Menu extends Phaser.Scene {
             fixedWidth: 0
             
         }
+<<<<<<< HEAD
+        this.background = this.add.image(game.config.width/2, game.config.height/2, 'menu');        
+=======
         //this.add.text(game.config.width/2, game.config.height/2 - (borderUISize + borderPadding), 'Pixel Runner', menuConfig).setOrigin(0.5);
         //this.add.text(game.config.width/2, game.config.height/2, 'Use Spacebar to Jump', menuConfig).setOrigin(0.5);
         //menuConfig.backgroundColor = "#00FF00";
         //menuConfig.color = "#000";
         //this.add.text(game.config.width/2, game.config.height/2 + (borderUISize + borderPadding), 'Press Spacebar to Start', menuConfig).setOrigin(0.5);
+>>>>>>> 2d7de293d4ed9a469a2ecc6dd4d85a53d8f7acd3
 
         keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
         keyR = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);

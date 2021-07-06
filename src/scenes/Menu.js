@@ -15,6 +15,12 @@ class Menu extends Phaser.Scene {
         this.load.audio('sfx_bgm', './assets/bgm.wav');
     }
     create() {
+        this.song = this.sound.add("sfx_bgm",{volume: 0.5});
+        this.this.song.play();
+
+
+
+
         let menuConfig = {
             fontFamily: 'Courier',
             fontSize: '28px',
@@ -36,15 +42,14 @@ class Menu extends Phaser.Scene {
         keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
         keyR = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
     }
-    /*update() {
+    update() {
         if (Phaser.Input.Keyboard.JustDown(keySPACE)) {
             game.settings = {
-                spaceshipSpeed: 3,
-                gameTimer: 60000
+                characterSpeed: 3,
             }
             this.sound.play('sfx_click');
             this.scene.start('playScene');
         }
-    }*/
+    }
 }
 

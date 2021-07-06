@@ -39,11 +39,18 @@ class Player extends Phaser.GameObjects.Sprite {
                 this.vSpeed -= 3;
             }
         }
-        else if(this.checkFloor()){
+
+        if(this.checkFloor()){
             this.vSpeed = 0;
             if(Phaser.Input.Keyboard.JustDown(keyJump)){
                 this.vSpeed = 32;
             }
+        }
+
+        if(Phaser.Input.Keyboard.JustDown(keyJump)){
+            /*i don't know why, i don't want to know why,
+            i shouldn't have to know why, but without this dummy check
+            the player can press jump again to buffer a jump*/
         }
         this.y -= (this.vSpeed / 4);
     }

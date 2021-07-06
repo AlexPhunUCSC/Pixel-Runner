@@ -7,15 +7,11 @@ class Menu extends Phaser.Scene {
 
     }
     preload() {
-        // load audio
-        this.load.audio('sfx_run', './assets/run.wav');
-
-        this.load.audio('sfx_click', './assets/click.wav');
-
-        this.load.audio('sfx_bgm', './assets/bgm.wav');
+        // any asset for this scene
+        this.load.image('menu', './assets/MenuScreen.png');
     }
     create() {
-      /*  let menuConfig = {
+        let menuConfig = {
             fontFamily: 'Courier',
             fontSize: '28px',
             backgroundColor: '#F3B141',
@@ -26,10 +22,8 @@ class Menu extends Phaser.Scene {
             },
             fixedWidth: 0
             
-        }*/
-
-        var menu = this.add.image(640, 480, 'menu');
-        
+        }
+        this.background = this.add.image(game.config.width/2, game.config.height/2, 'menu');        
 
         keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
         keyR = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);

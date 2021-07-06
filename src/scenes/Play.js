@@ -29,8 +29,8 @@ class Play extends Phaser.Scene {
 
 
         this.pl1 = new Player(this, game.config.width / 2, game.config.height / 2, 'running', 0).setOrigin(0.5, 0);
-        this.plats = new Array(20);
-        for (let i = 0; i < 20; i++){
+        this.plats = new Array(21);
+        for (let i = 0; i < 21; i++){
             this.plats[i] = new Plat(this, 32 * i, 360, 'plat', 0).setOrigin(0, 0);
         }
         //this.plat1 = new Plat(this, game.config.width / 2, game.config.height * 3 / 4, 'plat', 0).setOrigin(0, 0);
@@ -75,7 +75,7 @@ class Play extends Phaser.Scene {
         if(!this.gameOver) {
             this.pl1.update();
             //this.plat1.update();
-            for(let i = 0; i < 20; i++){
+            for(let i = 0; i < 21; i++){
                 this.plats[i].update();
             }
         }

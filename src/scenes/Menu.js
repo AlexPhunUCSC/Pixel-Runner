@@ -29,6 +29,7 @@ class Menu extends Phaser.Scene {
         }*/
 
         var menu = this.add.image(640, 480, 'menu');
+        
 
         keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
         keyR = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);

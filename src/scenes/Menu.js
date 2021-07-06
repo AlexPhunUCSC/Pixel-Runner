@@ -11,15 +11,8 @@ class Menu extends Phaser.Scene {
     preload() {
         // any asset for this scene
         this.load.image('menu', './assets/MenuScreen.png');
-        // load audio
-        this.load.audio('sfx_run', './assets/run.wav');
-        //this.load.audio('sfx_click', './assets/click.wav');
-        this.load.audio('sfx_bgm', './assets/bgm.wav');
     }
-    create(){
-        this.song = this.sound.add("sfx_bgm",{volume: 0.5});
-        //this.click = this.sound.add("sfx_click",{volume: 0.5});
-        
+    create(){        
         this.song.play();
         let menuConfig = {
             fontFamily: 'Courier',
@@ -34,12 +27,12 @@ class Menu extends Phaser.Scene {
             
         }
         this.background = this.add.image(game.config.width/2, game.config.height/2, 'menu');        
+        
         keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
         keyR = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
     }
     update() {
         if (Phaser.Input.Keyboard.JustDown(keySPACE)) {
-            //this.click.play();
             this.scene.start('playScene');
         }
     }

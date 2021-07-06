@@ -12,4 +12,3 @@ let borderPadding = borderUISize / 3;
 
 // reserve keyboard vars
 let keySPACE, keyR, keyJump;
-let platgen;

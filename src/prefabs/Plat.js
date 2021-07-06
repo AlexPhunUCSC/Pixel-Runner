@@ -13,6 +13,6 @@ class Plat extends Phaser.GameObjects.Sprite {
 
     reset() {
         this.x = game.config.width;
-        this.y = 360 - (16 * (Math.floor(Math.random() * 6))); 
+        this.y = 392 - (16 * (Math.floor(Math.random() * 6))); 
     }
 }

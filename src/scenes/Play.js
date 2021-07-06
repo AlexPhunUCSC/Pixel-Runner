@@ -26,8 +26,6 @@ class Play extends Phaser.Scene {
         this.add.rectangle(0, game.config.height - borderUISize, game.config.width, borderUISize, 0xFFFFFF).setOrigin(0,0);
         this.add.rectangle(0, 0, borderUISize, game.config.height, 0xFFFFFF).setOrigin(0,0);
         this.add.rectangle(game.config.width - borderUISize, 0, borderUISize, game.config.height, 0xFFFFFF).setOrigin(0,0);
-
-        //this.pl1 = new Player(this, game.config.width / 2, game.config.height / 2, 'running').setOrigin(0.5, 0);
         /*this.p1Rocket = new Rocket(this, 
             game.config.width / 2, 
             game.config.height - (borderUISize + borderPadding), 
@@ -38,25 +36,22 @@ class Play extends Phaser.Scene {
         this.ship03 = new Spaceship(this, game.config.width, borderUISize*6 + borderPadding*4, 'spaceship', 0, 10).setOrigin(0,0);*/
 
         this.pl1 = new Player(this, game.config.width / 2, game.config.height / 2, 'running', 0).setOrigin(0.5, 0);
-        this.plats = new Array(21);
-        for (let i = 0; i < 21; i++){
-            this.plats[i] = new Plat(this, 32 * i, 360, 'plat', 0).setOrigin(0, 0);
-        }
-        //this.plat1 = new Plat(this, game.config.width / 2, game.config.height * 3 / 4, 'plat', 0).setOrigin(0, 0);
-
-        keyR = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
-        keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
-        keyJump = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
-
-        //player animation attempt start
-        this.pl1 = this.add.sprite(game.config.width/2 - borderPadding*1, game.config.height/1.75, 'running');
         const playerAnimation = this.anims.create({
             key: 'running1',
             frames: this.anims.generateFrameNumbers('running'),
             frameRate: 12
         });
         this.pl1.play({ key: 'running1', repeat: -1 });
-        //player animation attempt end
+
+        this.plats = new Array(21);
+        for (let i = 0; i < 21; i++){
+            this.plats[i] = new Plat(this, 32 * i, 392, 'plat', 0).setOrigin(0, 0);
+        }
+
+        keyR = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
+        keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
+        keyJump = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
+
 
         this.p1Score = 0;
 
@@ -81,10 +76,11 @@ class Play extends Phaser.Scene {
     update() {
 
         //jump animation
-        if(Phaser.Input.Keyboard.JustDown(keySPACE)) {
+        /*if(Phaser.Input.Keyboard.JustDown(keySPACE)) {
             this.pl1.alpha = 0;
             this.pl1 = new Player(this, game.config.width / 2, game.config.height / 2, 'jump').setOrigin(0.5, 0);
-        }
+        }*/
+        //re: please for the love of god, don't implement it like this
 
         if(this.gameOver && Phaser.Input.Keyboard.JustDown(keySPACE)) {
             this.scene.restart();
@@ -92,7 +88,7 @@ class Play extends Phaser.Scene {
         if(this.gameOver && Phaser.Input.Keyboard.JustDown(keyR)) {
             this.scene.start("menuScene");
         }
-        this.starfield.tilePositionX -= 2;
+        //this.starfield.tilePositionX -= 2;
         if(!this.gameOver) {
             this.pl1.update();
             //this.plat1.update();

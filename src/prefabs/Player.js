@@ -54,6 +54,9 @@ class Player extends Phaser.GameObjects.Sprite {
             i shouldn't have to know why, but without this dummy check
             the player can press jump again to buffer a jump*/
         }
+        if(this.vSpeed > 0){
+            this.texture = 'jump';
+        }
         this.y -= (this.vSpeed / 4);
     }
 

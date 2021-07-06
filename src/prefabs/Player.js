@@ -10,22 +10,31 @@ class Player extends Phaser.GameObjects.Sprite {
             if (side == 0){
                 this.evaluateFloorUnderBack(platBack);
             }
+            else if (side == 1){
+                this.evaluateFloorUnderFront(platBack);
+            }
         }       
     }
 
     evaluateFloorUnderBack(platBack){
         this.floorUnderBackHeight = platBack - 32;
     }
+    evaluateFloorUnderFront(platFront){
+        this.floorUnderFrontHeight = platFront - 32;
+    }
 
     checkFloor() {
-        if(this.y < this.floorUnderBackHeight){
-            return false;
-        }
-        else if(this.y = this.floorUnderBackHeight){
+        if(this.y == this.floorUnderBackHeight || this.y == this.floorUnderFrontHeight){
             return true;
         }
-        else if((this.y - 4) > this.floorUnderBackHeight){
-            return false;
+        else if(((this.y + (this.vSpeed / 4)) < this.floorUnderFrontHeight) && (this.y > this.floorUnderFrontHeight) && this.vSpeed < 0){
+            this.y = this.floorUnderFrontHeight;
+            this.vSpeed = 0;
+            return true;
+        }
+        else if(((this.y + (this.vSpeed / 4)) < this.floorUnderBackHeight) && (this.y > this.floorUnderBackHeight) && this.vSpeed < 0){
+            this.y = this.floorUnderBackHeight;
+            return true;
         }
         else{
             return false;
@@ -47,8 +56,7 @@ class Player extends Phaser.GameObjects.Sprite {
                 this.terminalV = -24;
             }
         }
-
-        if(this.checkFloor()){
+        else{
             this.vSpeed = 0;
             if(Phaser.Input.Keyboard.JustDown(keyJump)){
                 this.vSpeed = 32;
@@ -65,8 +73,6 @@ class Player extends Phaser.GameObjects.Sprite {
         }
         this.y -= (this.vSpeed / 4);
     }
-
-
 
     reset() {
 

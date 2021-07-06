@@ -94,8 +94,11 @@ class Play extends Phaser.Scene {
             //this.plat1.update();
             for(let i = 0; i < 21; i++){
                 this.plats[i].update();
-                if(this.plats[i].x == 320){
+                if(this.plats[i].x == this.pl1.x){
                     this.pl1.evaluateFloor(0, this.plats[i].y);
+                }
+                if(this.plats[i].x == this.pl1.x + 16){
+                    this.pl1.evaluateFloor(1, this.plats[i].y);
                 }
             }
         }

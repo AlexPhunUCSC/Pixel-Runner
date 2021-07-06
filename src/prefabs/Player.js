@@ -30,7 +30,7 @@ class Player extends Phaser.GameObjects.Sprite {
         //we're only moving vertically, the BG is doing the horizontal movement for us
         if (!this.checkFloor()) {
             if(this.vSpeed < this.terminalV){
-                //this.vSpeed = this.terminalV;
+                this.vSpeed = this.terminalV;
             }
             if(keyJump.isDown){
                 this.vSpeed -= 1;

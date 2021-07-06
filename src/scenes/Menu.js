@@ -13,7 +13,7 @@ class Menu extends Phaser.Scene {
         this.load.image('menu', './assets/MenuScreen.png');
     }
     create(){        
-        this.song.play();
+        //this.song.play();
         let menuConfig = {
             fontFamily: 'Courier',
             fontSize: '28px',

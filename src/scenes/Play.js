@@ -81,6 +81,7 @@ class Play extends Phaser.Scene {
                 if(this.plats[i].x == this.pl1.x){
                     this.pl1.evaluateFloor(0, this.plats[i].y);
                     this.p1Score++;
+                    this.scoreLeft.text = this.p1Score;
                 }
                 if(this.plats[i].x == this.pl1.x + 16){
                     this.pl1.evaluateFloor(1, this.plats[i].y);

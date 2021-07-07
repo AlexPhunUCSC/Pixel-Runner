@@ -93,7 +93,7 @@ class Play extends Phaser.Scene {
             }
         }
         if(this.pl1.y > game.config.height){
-            this.scene.start('gameOverScene');
+            this.scene.start("gameOverScene");
         }
         
         //check collisions

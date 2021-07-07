@@ -74,18 +74,13 @@ class Play extends Phaser.Scene {
         }*/
         //please for the love of god, don't implement it like this
 
-        if(this.gameOver && Phaser.Input.Keyboard.JustDown(keySPACE)) {
-            this.scene.restart();
-        }
-        if(this.gameOver && Phaser.Input.Keyboard.JustDown(keyR)) {
-            this.scene.start("menuScene");
-        }
-        if(!this.gameOver) {
+        if(true) {
             this.pl1.update();
             for(let i = 0; i < 21; i++){
                 this.plats[i].update();
                 if(this.plats[i].x == this.pl1.x){
                     this.pl1.evaluateFloor(0, this.plats[i].y);
+                    this.p1Score++;
                 }
                 if(this.plats[i].x == this.pl1.x + 16){
                     this.pl1.evaluateFloor(1, this.plats[i].y);

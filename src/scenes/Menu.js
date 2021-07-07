@@ -2,6 +2,7 @@ class Menu extends Phaser.Scene {
     constructor() {
         super("menuScene");
         let song;
+        let allsound;
     }
 
     init() {
@@ -13,9 +14,11 @@ class Menu extends Phaser.Scene {
         this.load.audio('sfx_bgm', './assets/bgm.wav');
     }
     create(){    
-        this.song = this.sound.add('sfx_bgm',{volume: 0.5});
-        this.song.play;
-        
+        var allsound = this.sound.getAll();
+        if((allsound[0]) == null){
+            this.song = this.sound.add('sfx_bgm',{volume: 0.5, loop: true});
+        }
+        allsound = null;
         let menuConfig = {
             fontFamily: 'Courier',
             fontSize: '28px',
@@ -35,7 +38,12 @@ class Menu extends Phaser.Scene {
     }
     update() {
         if (Phaser.Input.Keyboard.JustDown(keySPACE)) {
-            this.song.play();
+            var allsound = this.sound.getAll();
+            console.log(allsound); 
+            if(allsound[0].isPlaying == false){
+                this.song.play();
+            }
+            allsound = null;
             this.scene.start('playScene');
         }
     }

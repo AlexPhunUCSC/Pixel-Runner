@@ -1,7 +1,6 @@
 class GameOver extends Phaser.Scene {
     constructor() {
         super("gameOverScene");
-        let song;
     }
 
     init() {

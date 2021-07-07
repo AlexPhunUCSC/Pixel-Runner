@@ -39,7 +39,6 @@ class Menu extends Phaser.Scene {
     update() {
         if (Phaser.Input.Keyboard.JustDown(keySPACE)) {
             var allsound = this.sound.getAll();
-            console.log(allsound); 
             if(allsound[0].isPlaying == false){
                 this.song.play();
             }

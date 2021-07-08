@@ -11,6 +11,13 @@ class Plat extends Phaser.GameObjects.Sprite {
         }
     }
 
+    /**
+     * This function is entirely responsible for level generation.
+     * Platforms are uniformly distributed from 0 pixels above starting
+     * starting height to 80 pixels, in increments of 16 pixels.
+     * 16 pixel-increments are so that the player knows they can't gain
+     * height without jumping.
+     */
     reset() {
         this.x = game.config.width;
         this.y = 392 - (16 * (Math.floor(Math.random() * 6))); 
